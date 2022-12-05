@@ -18,4 +18,4 @@ export default async function rssFeedChecker(httpLink: string) {
         return false
     }
 }
-rssFeedChecker("https://google.com")
+rssFeedChecker("https://www.futura-sciences.com/rss/high-tech/actualites.xml")

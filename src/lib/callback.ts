@@ -1,0 +1,1 @@
+// ce fichier permet d'utiliser le résultat des callabacks sur le bot telegram
