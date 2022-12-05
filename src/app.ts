@@ -1,6 +1,7 @@
 import bot from "./bot"
 import { pb_client } from "./clients/pocketbase";
 import { register, isUserRegistered } from "./lib/register"
+import "./lib/callback"
 
 bot.onText(/\/start/, async message => {
     const chatId = message.chat.id;
@@ -53,6 +54,7 @@ bot.onText(/^S'abonner à un flux existant 🔔$/, async message => {
             inline_keyboard.push(
                 [{
                     text: item.title, callback_data: JSON.stringify({
+                        feedId: item.id,
                         action: "sub"
                     })
                 }]
@@ -70,7 +72,7 @@ bot.onText(/^S'abonner à un flux existant 🔔$/, async message => {
     }
 })
 
-bot.onText(/Mes flux d'actualités 👁️/, async message => {
+bot.onText(/Voir mes flux d'actualités 👁️/, async message => {
     // On recherche tous les flux auxquels l'utilisateur s'est abonné et on lui renvoie les flux en inline keyboard
     // On lui donne la possibilité de se désabonner du flux
 
@@ -106,6 +108,7 @@ bot.onText(/Mes flux d'actualités 👁️/, async message => {
             inline_keyboard.push(
                 [{
                     text: item.title, callback_data: JSON.stringify({
+                        feedId: item.id,
                         action: "unsub"
                     })
                 }]
